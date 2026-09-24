@@ -1,0 +1,10 @@
+,mean,1981,2021,last12m,price_return,dist_hours_end_over_start
+Baseline,5.03,10.18,1.96,3.14,3.28,0.2
+Equities: Shiller US only,5.0,10.36,1.72,2.83,3.31,0.18
+Equities: Shiller US + EFA/EEM/ACWI fund composite (v1.0),5.08,10.36,1.87,3.12,3.23,0.2
+Government: seven-year trailing mean yield (running coupon),5.12,8.94,2.04,2.83,3.12,0.18
+"Inflation-linked: real coupon only, no accretion",5.0,10.18,1.87,3.08,3.31,0.2
+EM debt: Baa + 2.0 (the return proxy's yield),5.06,10.18,2.03,3.21,3.25,0.2
+All credit sleeves 1 point lower,4.69,9.87,1.67,2.87,3.62,0.23
+Bond sleeves at index-fund cash-distribution levels,4.83,9.97,1.89,2.88,3.48,0.21
+Weights: two-year lag (from 1977),5.0,10.39,1.98,3.25,3.17,0.23

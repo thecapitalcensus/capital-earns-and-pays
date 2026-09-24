@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite the research note and this repository."
+type: software
+title: "What the World's Capital Earns and Pays — code and derived data"
+version: "1.4"
+date-released: "2026-09-24"
+authors:
+  - family-names: Nakanishi
+    given-names: Keisuke
+    orcid: "https://orcid.org/0009-0000-3780-9450"
+    email: thecapitalcensus@gmail.com
+repository-code: "https://github.com/thecapitalcensus/capital-earns-and-pays"
+url: "https://thecapitalcensus.github.io/income.html"
+license: MIT
+keywords:
+  - global market portfolio
+  - dividend yield
+  - bond yield
+  - total return decomposition
+  - labour-time numeraire
+  - world hour
+preferred-citation:
+  type: report
+  title: "What the World's Capital Earns and Pays: The Global Market Portfolio in Dollars and in Hours of the World's Work"
+  authors:
+    - family-names: Nakanishi
+      given-names: Keisuke
+      orcid: "https://orcid.org/0009-0000-3780-9450"
+  year: 2026
+  institution:
+    name: "SSRN"
+  notes: "Research note, draft v1.4, 23 September 2026. SSRN identifier to be added on posting."

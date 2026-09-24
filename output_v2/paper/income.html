@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What the World&rsquo;s Capital Earns and Pays &middot; The Capital Census</title>
+<link rel="stylesheet" href="style.css">
+<style>
+figure { margin: 1.5rem 0; } figure img { width: 100%; height: auto; border: 1px solid var(--rule); border-radius: 4px; }
+figcaption { color: var(--muted); font-size: .9rem; margin-top: .4rem; }
+td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+tr.bold td { font-weight: 600; }
+@media print { @page { size: A4; margin: 15mm 16mm; } body { max-width: none; padding: 0; font-size: 9.6pt; line-height: 1.5; } h1 { font-size: 17pt; } h2 { font-size: 11.5pt; margin: 1.6rem 0 .5rem; } th { white-space: normal; } figure { break-inside: avoid; margin: .9rem 0; } h2, h3 { break-after: avoid; } h3 + figure, h2 + figure, h3 + p, h2 + p { break-before: avoid; } .scroll { overflow: visible; } table { font-size: 8pt; } th, td { padding: .22rem .4rem; } .box { padding: .6rem .8rem; } }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <a class="wordmark" href="index.html">The Capital Census</a>
+  <nav>
+    <a href="index.html">Monthly Index</a>
+    <a href="methodology.html">Methodology</a>
+    <a href="ledger.html">Verification Ledger</a>
+    <a href="data.html">Data</a>
+    <a href="hours.html">World Hour</a>
+    <a href="income.html" aria-current="page">Earns and Pays</a>
+  </nav>
+</header>
+
+<h1>What the World&rsquo;s Capital Earns and Pays</h1>
+<p class="lede">The global market portfolio in dollars and in hours of the world&rsquo;s work. Research note, draft v1.4, 23 September 2026 (supersedes v1.3; revision history at the end). Keisuke Nakanishi.</p>
+
+<div class="box">
+  <p style="margin:0">This is a review-style note intended for open publication, not a journal submission. All series were
+  built by the author from free public data (FRED, the Jord&agrave;&ndash;Schularick&ndash;Taylor Macrohistory Database,
+  World Bank, Robert Shiller&rsquo;s online data, Penn World Table, exchange-traded fund prices and distributions as
+  published by Yahoo Finance, and the frozen engine behind the first two notes); no third-party proprietary data is
+  redistributed, no index-vendor data is used, and no tables or figures from other publications are reproduced.
+  Generative AI tools (Claude, Anthropic) were used for drafting, editorial review and writing analysis code, and as
+  a discussion partner in analysis design. The author specified the questions, reviewed and ran all code, checked the
+  outputs against the source data, and is responsible for all results. The analysis is exploratory: it was not
+  pre-registered, and it was run with the results visible. SSRN identifier: <span class="tbd">[TBD on submission]</span>.</p>
+  <p style="margin:0.6em 0 0">Licence: the text of this note, as published on this site, is
+  <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>; any SSRN posting is governed by
+  SSRN&rsquo;s terms, with copyright retained by the author. The Macrohistory Database is used under its
+  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> licence (non-commercial, share-alike,
+  cited as its authors require): any series derived from it here &mdash; the world dividend&ndash;price ratio and
+  everything computed from it &mdash; can be released only on those same terms and is not offered under any commercial
+  licence. Fund prices and distributions from Yahoo Finance are used as a public source for the author&rsquo;s own
+  calculations and are not redistributed, nor are series that reproduce them. Series that depend only on the frozen
+  engine, FRED and World Bank inputs follow the terms of the CC-GMP TR and CC-WH series
+  (<a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>). See the
+  <a href="index.html#licence">Licence</a> section on the home page.</p>
+</div>
+
+<h2 id="summary">Summary</h2>
+<p>The first note in this series built an index of the investable global market portfolio (GMP) and measured what it
+returned (Nakanishi 2026a). The second built a unit of account &mdash; nominal GDP per hour worked across 43
+countries, the <em>world hour</em> (Nakanishi 2026b). This note asks of the same portfolio: <strong>how many hours of
+the world&rsquo;s work does a unit of the world&rsquo;s capital generate each year, and how much of that does it pay
+out in cash?</strong> It follows the GMP month by month from 1976 to mid-2026, splits its total return into cash
+distributions, changes in valuation and the rest, and measures each in world hours.</p>
+<p>Five results follow.</p>
+<ol type="1">
+<li><strong>Capital worth 1,000 hours of the world&rsquo;s work generated 83 hours a year.</strong>
+That is the GMP&rsquo;s total return, 8.3% a year in dollars (log) over 1976&ndash;2026. 50 hours
+arrived as cash and 33 as price. About 11 of the 33 were changes in valuation &mdash;
+a lower world dividend&ndash;price ratio, lower bond yields and the price of gold &mdash; which re-price existing capital
+rather than produce anything; excluding them, capital generated 72 hours a year.</li>
+<li><strong>Most of it was needed to stand still.</strong> An hour of the world&rsquo;s work rose in value by
+4.8% a year in dollars, so 48 of the 83 hours went to keeping a holding&rsquo;s value
+constant in hours. The net gain was 35 hours a year per 1,000, and 24 excluding valuation
+changes (21 to 24 under three valuation measures).</li>
+<li><strong>For the whole investable portfolio, total return averaged 9.8% of world GDP a year</strong>
+&mdash; 5.8% in cash and 4.0% in price. Net of the growth of the hour it was 4.1%, and 2.7% excluding valuation changes; net of the growth of world GDP itself, which is faster by the growth of hours worked, 2.7% and 1.3%. By decade it was highest in the 1980s and 1990s (11.2% and
+11.4%) and lowest in 1976&ndash;1980 and 2021&ndash;2025 (5.8% and 7.3%).</li>
+<li><strong>The cash part fell by four-fifths, mainly because interest rates fell.</strong> The GMP&rsquo;s
+distribution yield was 7.2% in January 1976, 11.6% at its peak in June 1982, 1.8% in
+December 2020 and 3.1% in June 2026. Of the 8.2-point fall between 1981 and 2021, 8.1
+points were falling sleeve yields and 0.2 the shift from bonds to equities. The fall in the equity dividend
+yield overstates the fall in what equities earn: in the United States dividends grew 6.2% a year against
+earnings 7.1%, the rest being retained or spent on buybacks.</li>
+<li><strong>Cash is not income in hours; how capital pays matters.</strong> Bond sleeves returned nothing through price
+once valuation changes are removed, so in hours their coupons were mostly a refund for the currency&rsquo;s decline.
+Equities returned 6.2% a year through price excluding valuation, 4.1 points faster than the
+hour. A holding bought in 1976 that spent every distribution saw its distributions fall to 20% of their
+starting level in world hours; the same holding with distributions reinvested was worth 5.8 times the hours
+it cost.</li>
+</ol>
+<p>The world&rsquo;s capital generated more than the growth of the value of work &mdash; a net 2.1 to
+3.5% a year, depending on whether valuation changes count. It paid out in cash more than that net gain,
+about 5.0% a year. That is why what capital generates cannot be read off what it distributes.</p>
+
+<h2 id="question">1. The question</h2>
+<p>Asset returns are usually reported as a single number, total return. For anyone who wants to know how the
+output of the world is divided between those who own capital and those who work, two splits of that number matter.
+The first is how much of the return is produced and how much is a change in the price that the market puts on the
+same claim. The second is how much arrives as cash and how much stays in the price. Measured in dollars both splits
+look secondary. Measured against something that grows &mdash; the value of an hour of the world&rsquo;s work &mdash;
+they decide whether a holder&rsquo;s claim on that work rises or falls.</p>
+<p>Two literatures bear on this. National accounts divide income between labour and capital and have documented a
+fall in the labour share since the 1980s (Karabarbounis and Neiman 2014), much of it in housing (Rognlie 2015).
+Asset-return histories split returns into yield and capital gain, and the capital gain into growth and re-rating
+(Campbell and Shiller 1988; Arnott and Bernstein 2002; Dimson, Marsh and Staunton 2002; Ibbotson and Chen 2003;
+Jord&agrave;, Knoll, Kuvshinov, Schularick and Taylor 2019). Piketty (2014) framed the comparison of the return on
+capital, <em>r</em>, with the growth of the economy, <em>g</em>. This note applies those splits to one object &mdash; the
+investable market portfolio at the weights the market sets &mdash; and compares <em>r</em> not with <em>g</em> but with the growth of the dollar value of an hour of work. The two are
+different, as the second note argued (Nakanishi 2026b, Section 4.2): world nominal GDP grows faster than GDP per hour by
+the growth of hours worked. A reader who wants <em>r</em> &minus; <em>g</em> in Piketty&rsquo;s sense will find it in the memo
+rows of Table 5; every other &ldquo;net&rdquo; figure in this note is net of the hour, which is the holder&rsquo;s question
+(does my claim command more of other people&rsquo;s time?), not the economy&rsquo;s (does capital grow faster than
+output?).</p>
+<p>The cash split needs a word of justification, because Miller and Modigliani (1961) showed that a firm&rsquo;s
+dividend policy does not change what its owners receive in total: earnings retained or spent on repurchases reach the
+owner as price, and an owner who wants cash sells. The cash line in this note is therefore a record of how the return
+was <em>delivered</em>, which is a policy, not of what capital <em>generated</em>, which is Section 4. Both are kept
+because both are asked about, and because the gap between them turns out to be the note&rsquo;s most useful number.</p>
+
+<h2 id="definitions">2. Definitions</h2>
+<p><strong>Total return and its parts.</strong> For each sleeve <em>s</em> of the index, the monthly total return from the
+frozen backtest engine is split into three parts, each summed over the sleeves at the index&rsquo;s beginning-of-month
+weights (reconstituted each January to the previous year-end&rsquo;s market weights and floating in between; Nakanishi
+2026a, Section 5). All parts are in log terms, so they add up to the compound total return.</p>
+<ul>
+<li><em>Cash</em>: one-twelfth of the previous month&rsquo;s income yield <em>y<sub>s</sub></em> (Section 3). Gold&rsquo;s is
+zero.</li>
+<li><em>Valuation change</em>: for equities, the change in the log price&ndash;dividend ratio of the world panel
+(the inverse of the dividend&ndash;price ratio in Table 1); for each bond sleeve, the price change of a par bond of the
+sleeve&rsquo;s maturity caused by the change in its yield; for gold, its whole price change, since gold has neither
+earnings nor coupons.</li>
+<li><em>Earnings growth and other</em>: the remainder. For equities this is mainly the growth of dividends per share,
+which over long periods tracks earnings; for bonds, credit losses and the difference between the modelled and the traded
+instruments; it also absorbs the compounding difference between arithmetic and log returns.</li>
+</ul>
+<p>&ldquo;Price&rdquo; is valuation change plus the remainder. &ldquo;Total return excluding valuation&rdquo; is cash plus
+the remainder: the part of the return not due to a change in what the market pays for the same claim.</p>
+<p><strong>The world hour.</strong> The CC-WH series of Nakanishi (2026b): nominal GDP per hour worked, chained at GDP
+weights across the panel, in US dollars. The monthly series is the second note&rsquo;s annual-data version (World Bank GDP, Penn
+World Table hours, interpolated), which is hard data to June 2025 and extrapolated after; April&ndash;June 2026 take
+the quarterly series&rsquo; growth. The level is anchored so that the 2014-Q1 average equals the panel&rsquo;s dollars per
+hour in that quarter (US$15.26). Its implied 1976 level
+(about US$2 an hour) is not a measurement of the 1976 panel average, and no result below depends on it. The series is
+provisional from July 2025.</p>
+<p><strong>Hours generated.</strong> Capital worth 1,000 world hours at the start of a year, returning <em>TR</em> in
+dollars, generates 1,000 &times; <em>TR</em> hours&rsquo; worth of dollars in the year. If the dollar value of an hour
+grows at <em>g</em>, 1,000 &times; <em>g</em> of those hours are needed to keep the holding worth 1,000 hours; the net
+gain is 1,000 &times; (<em>TR</em> &minus; <em>g</em>). All three are reported, with and without valuation changes.</p>
+<p><strong>Cash distribution yield.</strong> The GMP&rsquo;s cash distribution yield is <em>y<sub>t</sub></em> = &Sigma;<sub>s</sub>
+<em>w<sub>s,t</sub></em> &middot; <em>y<sub>s,t&minus;1</sub></em>.</p>
+<p><strong>Two holdings.</strong> A holding worth 10,000 world hours in January 1976 is followed under two rules:
+distributions reinvested (the index itself), and distributions spent (each sleeve grows with its price return only,
+and the holding is reconstituted each January).</p>
+<p><strong>Shares of world output.</strong> Any of these flows for the whole investable portfolio, divided by world GDP,
+equals the share of all hours worked whose output, valued at the average hour, it could buy. No hours data are
+needed for that; where hours worked are reported (Table 9) they are the Penn World Table panel of the second note.</p>
+
+<h2 id="data">3. Data and construction</h2>
+<p>The sleeve weights and total returns are the rulebook-compliant GMP index of the first note (January 1976 to June
+2026), read from the frozen engine&rsquo;s output files, whose checksums are verified at run time. The weights reproduce
+the published index return to within 10<sup>&minus;16</sup> a month.</p>
+<div class="scroll"><table>
+<caption style="text-align:left;caption-side:top;font-size:.93rem;color:var(--muted);padding:.3rem 0">Table 1. Sleeve yields: construction and sources (author&rsquo;s construction)</caption>
+<thead><tr><th>Sleeve</th><th>Yield</th><th>Source</th></tr></thead><tbody>
+<tr><td>Equities</td><td>Dividend&ndash;price ratio of a sixteen-country panel, weighted by listed market capitalisation, annual to 2020 interpolated to months; from 2021 the ACWI fund&rsquo;s trailing twelve-month distributions plus expense ratio, shifted by the 2011&ndash;2020 panel-minus-fund gap</td><td>Macrohistory Database R6 (eq_dp; Jord&agrave; et al. 2019, CC BY-NC-SA 4.0); World Bank CM.MKT.LCAP.CD; Yahoo Finance</td></tr>
+<tr><td>DM government bonds</td><td>Ten-year yields of the US, Japan, Germany, the UK, France, Canada and Italy at the sleeve&rsquo;s fixed country weights, renormalised over the countries with data</td><td>FRED (DGS10, OECD IRLTLT01)</td></tr>
+<tr><td>Investment-grade credit</td><td>Average of Moody&rsquo;s Aaa and Baa yields</td><td>FRED</td></tr>
+<tr><td>Securitised</td><td>Half 5-year Treasury, half investment-grade credit (as the return proxy)</td><td>FRED</td></tr>
+<tr><td>EM debt</td><td>Baa + constant; constant (+0.12) set so the mean equals the fund&rsquo;s distributions plus expense ratio, EMB, 2009&ndash;2026</td><td>FRED; Yahoo Finance</td></tr>
+<tr><td>High yield</td><td>Baa + constant; constant (+1.43) from HYG on the same basis, 2009&ndash;2026</td><td>FRED; Yahoo Finance</td></tr>
+<tr><td>Inflation-linked</td><td>Real 10-year yield (TIPS from 2003; before that the return proxy&rsquo;s nominal yield minus trailing ten-year inflation) plus trailing twelve-month US CPI inflation, the principal accretion that inflation-linked bonds accrue as income</td><td>FRED (DFII10, DGS10, CPIAUCSL)</td></tr>
+<tr><td>Gold</td><td>Zero</td><td>&mdash;</td></tr>
+</tbody></table></div>
+<p><strong>Equities without index-vendor data.</strong> The world dividend&ndash;price ratio is built from the
+Macrohistory Database&rsquo;s annual <code>eq_dp</code> series for sixteen countries (Australia, Belgium, Switzerland,
+Germany, Denmark, Spain, Finland, France, the United Kingdom, Italy, Japan, the Netherlands, Norway, Portugal, Sweden
+and the United States; Canada and Ireland have no series), each weighted by its World Bank listed market
+capitalisation and renormalised over the countries with data. The panel covers 98% of world market
+capitalisation in 1976, 91% in 2000 and 69% in 2020; the countries outside it (Canada,
+Korea, China, India, Taiwan and others) are assumed to yield the panel average. Year-end values are interpolated to
+months. The database ends in 2020; from 2021 the series is the ACWI fund&rsquo;s trailing twelve-month distributions
+plus its expense ratio, shifted by the panel-minus-fund gap on 2011&ndash;2020 (+0.04 points) and blended in over
+twelve months. Figure A1 shows the construction; the US series alone (Shiller) is a robustness variant.</p>
+<p><strong>Valuation.</strong> The equity valuation change is the change in the log price&ndash;dividend ratio of the
+same world series. It is world-specific, which the alternatives are not, but it moves when payout policy changes as
+well as when prices re-rate; Section 4.2 therefore also reports the US trailing price&ndash;earnings ratio (S&amp;P
+Composite price over trailing twelve-month earnings, from Shiller&rsquo;s monthly data) and the US cyclically adjusted
+ratio (CAPE). The bond valuation change uses each sleeve&rsquo;s yield from Table 1 (the real yield for inflation-linked
+bonds) and a par bond of 10 years&rsquo; maturity for government bonds, 8 for EM debt and inflation-linked, 7 for
+investment-grade credit, 6 for securitised and 5 for high yield.</p>
+<p><strong>Aggregate values.</strong> The year-end US-dollar value of each sleeve comes from the same weight engine
+before normalisation: world listed equity capitalisation with the investability filter, BIS debt securities with
+Federal Reserve, ECB and Bank of Japan holdings netted out, the above-ground gold stock at market prices. Normalised,
+these values reproduce the published weight history (Nakanishi 2026c) to its rounding. Flows in year <em>y</em> are
+the average of the year-end values of <em>y</em>&minus;1 and <em>y</em> times the year&rsquo;s return components; stocks
+in Table 9 are year-end values. World GDP is the World Bank&rsquo;s NY.GDP.MKTP.CD.</p>
+<p><strong>A cross-check against what index funds actually paid.</strong> Table 2 compares each modelled yield with
+the trailing twelve-month cash distributions of an exchange-traded fund tracking a similar index, grossed up by the
+fund&rsquo;s current expense ratio, from the twenty-fourth month after the fund&rsquo;s launch.</p>
+<div class="scroll"><table>
+<caption style="text-align:left;caption-side:top;font-size:.93rem;color:var(--muted);padding:.3rem 0">Table 2. Modelled yields vs index-fund cash distributions plus expense ratio, % a year (author&rsquo;s calculations)</caption>
+<thead><tr><th>Sleeve : fund</th><th style="text-align:right">From</th><th style="text-align:right">Months</th><th style="text-align:right">Model</th><th style="text-align:right">Fund</th><th style="text-align:right">Correlation</th></tr></thead><tbody>
+<tr><td>Equities : ACWI</td><td class="num">2010-03</td><td class="num">196</td><td class="num">2.35</td><td class="num">2.27</td><td class="num">0.64</td></tr>
+<tr><td>Equities : VT</td><td class="num">2010-06</td><td class="num">193</td><td class="num">2.35</td><td class="num">2.21</td><td class="num">0.61</td></tr>
+<tr><td>Government : 0.42 IEF + 0.58 BWX</td><td class="num">2009-10</td><td class="num">201</td><td class="num">1.96</td><td class="num">1.99</td><td class="num">0.69</td></tr>
+<tr><td>Investment-grade : LQD</td><td class="num">2004-07</td><td class="num">264</td><td class="num">4.93</td><td class="num">4.21</td><td class="num">0.88</td></tr>
+<tr><td>Securitised : MBB</td><td class="num">2009-03</td><td class="num">208</td><td class="num">3.38</td><td class="num">2.84</td><td class="num">0.45</td></tr>
+<tr><td>EM debt : EMB</td><td class="num">2009-12</td><td class="num">199</td><td class="num">5.13</td><td class="num">5.13</td><td class="num">0.65</td></tr>
+<tr><td>Inflation-linked : TIP</td><td class="num">2005-12</td><td class="num">247</td><td class="num">3.42</td><td class="num">3.28</td><td class="num">0.70</td></tr>
+<tr><td>High yield : HYG</td><td class="num">2009-04</td><td class="num">207</td><td class="num">6.53</td><td class="num">6.53</td><td class="num">0.68</td></tr>
+</tbody></table></div>
+<p>The EM-debt and high-yield rows match by construction: their yields are Baa plus a constant (+0.12 and
++1.43 points) set so that the mean equals the fund&rsquo;s. The equity gap (about 0.1 points) is within the
+withholding tax a fund pays on foreign dividends. The modelled government, investment-grade, securitised and
+inflation-linked yields sit 0 to 0.7 points above what index funds paid, because the model uses market yields while
+funds pay coupons net of premium amortisation on shorter portfolios. The note&rsquo;s convention is the market-yield basis: it is
+consistent with the par-bond total returns from which the engine builds the sleeves, it is defined for the whole
+sample rather than only for the fund era, and it treats a coupon as what the market prices, not what a particular
+fund happened to pass through. Section 8 shows the fund-cash basis as a variant. The choice moves return between
+cash and price and leaves total return unchanged.</p>
+
+<h2 id="generates">4. What a unit of capital generates</h2>
+<h3>4.1 Per 1,000 hours of capital</h3>
+<figure><img src="img/v2_fig1.png" alt="Figure 1. Hours a year generated by GMP capital worth 1,000 world hours"><figcaption>Figure 1. Hours a year generated by GMP capital worth 1,000 world hours, by period: cash, earnings growth and other, and valuation change (bars); total return (diamonds); the hours needed to keep pace with the value of an hour (dashed lines). Author&rsquo;s calculations.</figcaption></figure>
+<div class="scroll"><table>
+<caption style="text-align:left;caption-side:top;font-size:.93rem;color:var(--muted);padding:.3rem 0">Table 3. Hours a year generated by capital worth 1,000 world hours (author&rsquo;s calculations). Equal to the annual log return in percent &times; 10. Periods are calendar years; 2026 runs to June. Components may not add exactly because of rounding</caption>
+<thead><tr><th></th><th style="text-align:right">1976&ndash;1981</th><th style="text-align:right">1982&ndash;2000</th><th style="text-align:right">2001&ndash;2021</th><th style="text-align:right">2022&ndash;2026</th><th style="text-align:right">1976&ndash;2026</th></tr></thead><tbody>
+<tr class="bold"><td>Total return (a)</td><td class="num">89</td><td class="num">116</td><td class="num">60</td><td class="num">44</td><td class="num">83</td></tr>
+<tr><td>&mdash; paid in cash</td><td class="num">79</td><td class="num">64</td><td class="num">33</td><td class="num">32</td><td class="num">50</td></tr>
+<tr><td>&mdash; price</td><td class="num">10</td><td class="num">52</td><td class="num">27</td><td class="num">12</td><td class="num">33</td></tr>
+<tr><td>&mdash;&mdash; valuation: world dividend&ndash;price ratio</td><td class="num">-7</td><td class="num">18</td><td class="num">-7</td><td class="num">13</td><td class="num">4</td></tr>
+<tr><td>&mdash;&mdash; valuation: bond yields</td><td class="num">-29</td><td class="num">18</td><td class="num">8</td><td class="num">-24</td><td class="num">5</td></tr>
+<tr><td>&mdash;&mdash; valuation: gold price</td><td class="num">10</td><td class="num">-1</td><td class="num">2</td><td class="num">7</td><td class="num">2</td></tr>
+<tr><td>&mdash;&mdash; earnings growth and other</td><td class="num">36</td><td class="num">16</td><td class="num">24</td><td class="num">16</td><td class="num">22</td></tr>
+<tr class="bold"><td>Total return excluding valuation (b)</td><td class="num">114</td><td class="num">80</td><td class="num">57</td><td class="num">47</td><td class="num">72</td></tr>
+<tr><td>Needed to keep pace with the hour (c)</td><td class="num">95</td><td class="num">43</td><td class="num">42</td><td class="num">37</td><td class="num">48</td></tr>
+<tr class="bold"><td>Net gain in hours: (a) &minus; (c)</td><td class="num">-6</td><td class="num">73</td><td class="num">18</td><td class="num">6</td><td class="num">35</td></tr>
+<tr class="bold"><td>Net gain excluding valuation: (b) &minus; (c)</td><td class="num">19</td><td class="num">38</td><td class="num">15</td><td class="num">10</td><td class="num">24</td></tr>
+</tbody></table></div>
+<p>Over the half-century, a unit of the world&rsquo;s capital generated about 8% of its own value in hours of work each
+year. Three-fifths came as cash. Of the two-fifths that came as price, a third was the market paying more for the same
+claims: the world dividend&ndash;price ratio fell from 4.0% to 1.8% (the US price&ndash;earnings ratio
+rose from 11.8 to 25.2), bond yields ended lower than they began, and gold rose faster than the
+hour.</p>
+<p>The periods show why a single average can mislead. In 1976&ndash;1981 capital generated more before valuation than in
+any later period (114 hours), but rising yields and falling equity multiples took 26 of them
+back, and inflation raised the value of the hour so fast that the holder lost ground. In 1982&ndash;2000 the same forces
+reversed: 36 hours of valuation gain on top of 80 earned, against an hour growing at only
+4.3% a year, for a net gain of 73. Since 2001 the net gain has been small: 18 hours a
+year to 2021, and 6 since 2022, when the bond sell-off took 24 hours back.</p>
+<h3>4.2 How much depends on the valuation measure</h3>
+<div class="scroll"><table>
+<caption style="text-align:left;caption-side:top;font-size:.93rem;color:var(--muted);padding:.3rem 0">Table 4. Full-sample valuation change under three equity measures, GMP level, % a year (author&rsquo;s calculations)</caption>
+<thead><tr><th>Equity valuation measure</th><th style="text-align:right">Equity valuation, sleeve</th><th style="text-align:right">Equity valuation, GMP level</th><th style="text-align:right">All valuation changes</th><th style="text-align:right">Total return excluding valuation</th><th style="text-align:right">Net of the hour, excluding valuation</th></tr></thead><tbody>
+<tr class="bold"><td>World dividend-price ratio (baseline)</td><td class="num">1.58</td><td class="num">0.43</td><td class="num">1.12</td><td class="num">7.18</td><td class="num">2.36</td></tr>
+<tr><td>US trailing P/E</td><td class="num">1.62</td><td class="num">0.37</td><td class="num">1.06</td><td class="num">7.24</td><td class="num">2.42</td></tr>
+<tr><td>US CAPE</td><td class="num">2.70</td><td class="num">0.72</td><td class="num">1.41</td><td class="num">6.90</td><td class="num">2.08</td></tr>
+</tbody></table></div>
+<p>Bond and gold valuation changes are the same in all three rows. For the equity sleeve alone the valuation change is
+1.6% a year on the world dividend&ndash;price ratio, 1.6% on the US trailing P/E and 2.7% on
+CAPE. In the United States the S&amp;P Composite price rose 8.6% a year from January 1976 to June 2026,
+earnings 7.1% and dividends 6.2%: the trailing P/E attributes 1.5 points a year of the price
+rise to re-rating; CAPE, whose ten-year real-earnings denominator lags nominal earnings growth, attributes more; the
+world dividend&ndash;price ratio, which also moves when payout policy changes, gives 1.6. On any of the three,
+the GMP&rsquo;s net gain in hours excluding valuation is 2.1&ndash;2.4% a year.</p>
+<h3>4.3 The whole investable portfolio, as a share of world output</h3>
+<figure><img src="img/v2_fig2.png" alt="Figure 2. Flows on the whole investable GMP, % of world GDP"><figcaption>Figure 2. Total return, cash distributions, and total return net of the growth of the hour, on the whole investable GMP, % of world GDP, annual averages. Author&rsquo;s calculations.</figcaption></figure>
+<div class="scroll"><table>
+<caption style="text-align:left;caption-side:top;font-size:.93rem;color:var(--muted);padding:.3rem 0">Table 5. Flows on the whole investable GMP, % of world GDP, annual averages (author&rsquo;s calculations)</caption>
+<thead><tr><th></th><th style="text-align:right">1976&ndash;1980</th><th style="text-align:right">1981&ndash;1990</th><th style="text-align:right">1991&ndash;2000</th><th style="text-align:right">2001&ndash;2010</th><th style="text-align:right">2011&ndash;2020</th><th style="text-align:right">2021&ndash;2025</th><th style="text-align:right">1976&ndash;2025</th></tr></thead><tbody>
+<tr class="bold"><td>Total return</td><td class="num">5.8</td><td class="num">11.2</td><td class="num">11.4</td><td class="num">10.4</td><td class="num">9.4</td><td class="num">7.3</td><td class="num">9.8</td></tr>
+<tr><td>&mdash; cash</td><td class="num">4.0</td><td class="num">6.8</td><td class="num">6.6</td><td class="num">6.8</td><td class="num">4.3</td><td class="num">4.9</td><td class="num">5.8</td></tr>
+<tr><td>&mdash; price</td><td class="num">1.7</td><td class="num">4.4</td><td class="num">4.8</td><td class="num">3.7</td><td class="num">5.1</td><td class="num">2.4</td><td class="num">4.0</td></tr>
+<tr><td>&mdash;&mdash; of which valuation change</td><td class="num">-0.3</td><td class="num">2.0</td><td class="num">4.4</td><td class="num">-1.7</td><td class="num">3.2</td><td class="num">-1.5</td><td class="num">1.4</td></tr>
+<tr><td>Needed to keep pace with the hour</td><td class="num">6.1</td><td class="num">5.7</td><td class="num">2.8</td><td class="num">10.3</td><td class="num">3.7</td><td class="num">6.2</td><td class="num">5.7</td></tr>
+<tr class="bold"><td>Net of the hour</td><td class="num">-0.4</td><td class="num">5.6</td><td class="num">8.6</td><td class="num">0.1</td><td class="num">5.7</td><td class="num">1.0</td><td class="num">4.1</td></tr>
+<tr><td><em>Memo: needed to keep pace with world GDP (g)</em></td><td class="num"><em>6.9</em></td><td class="num"><em>6.6</em></td><td class="num"><em>4.8</em></td><td class="num"><em>11.4</em></td><td class="num"><em>4.0</em></td><td class="num"><em>10.7</em></td><td class="num"><em>7.1</em></td></tr>
+<tr><td><em>Memo: net of world GDP growth (r &minus; g)</em></td><td class="num"><em>-1.1</em></td><td class="num"><em>4.6</em></td><td class="num"><em>6.6</em></td><td class="num"><em>-0.9</em></td><td class="num"><em>5.5</em></td><td class="num"><em>-3.4</em></td><td class="num"><em>2.7</em></td></tr>
+</tbody></table></div>
+<p>Capital is the average of adjacent year-ends; flows are each year&rsquo;s log return components times that capital.
+The full-sample valuation change is 1.4% of world GDP a year, so the total return excluding valuation is
+8.4% and its net of the hour 2.7%. Decade values of the valuation change swing with the world
+dividend&ndash;price ratio&rsquo;s own cycle and are shown for completeness only.</p>
+<p><strong>The hour is not <em>g</em>.</strong> World nominal GDP in dollars grew 5.95% a year over 1976&ndash;2025
+(log), the dollar value of an hour 4.82%; the difference, 1.13 points, is the growth of hours worked.
+Keeping pace with world GDP would have taken 7.1% of world GDP a year rather than the 5.7% needed to
+keep pace with the hour, so net of world GDP growth &mdash; <em>r</em> &minus; <em>g</em> applied to the investable portfolio and
+scaled by its size &mdash; the total return was 2.7% of world GDP a year, and 1.3% excluding valuation
+changes, against 4.1% and 2.7% net of the hour (Table 5, memo rows). A holding that keeps pace with the
+hour keeps its command over a constant number of hours of work; one that keeps pace with GDP keeps a constant share of
+world output, which is a higher bar by the growth of the workforce.</p>
+<p>Investable capital rose from 58% of world GDP at end-1976 to 195% at end-2025 (Table 9), so
+the same return on capital is a larger claim on output now than then. Averaged over the half-century, what the
+world&rsquo;s investable capital generated each year was equivalent to the output of one hour in ten worked in the
+world, of which one hour in seventeen was paid out in cash. Net of what was needed to keep holdings constant in hours,
+the gain was about one hour in twenty-five &mdash; or one in forty excluding changes in valuation. The decade figures
+swing widely, because both capital gains and the growth of the dollar value of an hour do: the net figure was close to
+zero in 1976&ndash;1980 and 2001&ndash;2010, 1.0% in 2021&ndash;2025, and 5.6&ndash;8.6% of
+world GDP in the three other decades.</p>
+<p>This is not the capital share of income. Housing, private businesses and bank deposits are outside the investable
+GMP; a quarter of the cash in 2025 was interest paid by governments out of taxation (Table 8); and a price gain is a
+claim on future output, not output already produced.</p>
+
+<h2 id="pays">5. How capital pays: the cash distribution yield</h2>
+<h3>5.1 The yield</h3>
+<figure><img src="img/v2_fig3.png" alt="Figure 3. Cash distribution yield of the GMP, by payer"><figcaption>Figure 3. Cash distribution yield of the GMP, by payer, 1976&ndash;2026. Author&rsquo;s calculations.</figcaption></figure>
+<div class="scroll"><table>
+<caption style="text-align:left;caption-side:top;font-size:.93rem;color:var(--muted);padding:.3rem 0">Table 6. Sleeve yields and the GMP cash distribution yield, annual averages, % a year (author&rsquo;s calculations)</caption>
+<thead><tr><th></th><th style="text-align:right">1976</th><th style="text-align:right">1981</th><th style="text-align:right">1990</th><th style="text-align:right">2000</th><th style="text-align:right">2007</th><th style="text-align:right">2012</th><th style="text-align:right">2021</th><th style="text-align:right">2025</th></tr></thead><tbody>
+<tr><td>Equities</td><td class="num">3.9</td><td class="num">4.4</td><td class="num">2.4</td><td class="num">1.4</td><td class="num">2.2</td><td class="num">2.9</td><td class="num">1.9</td><td class="num">1.9</td></tr>
+<tr><td>DM government bonds</td><td class="num">8.7</td><td class="num">13.9</td><td class="num">8.7</td><td class="num">4.8</td><td class="num">3.9</td><td class="num">1.8</td><td class="num">0.8</td><td class="num">3.4</td></tr>
+<tr><td>Investment-grade credit</td><td class="num">9.1</td><td class="num">15.1</td><td class="num">9.8</td><td class="num">8.0</td><td class="num">6.0</td><td class="num">4.3</td><td class="num">3.0</td><td class="num">5.7</td></tr>
+<tr><td>Securitised</td><td class="num">8.1</td><td class="num">14.7</td><td class="num">9.1</td><td class="num">7.1</td><td class="num">5.2</td><td class="num">2.5</td><td class="num">1.9</td><td class="num">4.8</td></tr>
+<tr><td>EM debt</td><td class="num">9.9</td><td class="num">16.2</td><td class="num">10.5</td><td class="num">8.5</td><td class="num">6.6</td><td class="num">5.1</td><td class="num">3.5</td><td class="num">6.1</td></tr>
+<tr><td>Inflation-linked</td><td class="num">0.0</td><td class="num">14.7</td><td class="num">8.9</td><td class="num">6.4</td><td class="num">5.1</td><td class="num">1.6</td><td class="num">3.8</td><td class="num">4.6</td></tr>
+<tr><td>High yield</td><td class="num">11.2</td><td class="num">17.5</td><td class="num">11.8</td><td class="num">9.8</td><td class="num">7.9</td><td class="num">6.4</td><td class="num">4.8</td><td class="num">7.4</td></tr>
+<tr><td>Gold</td><td class="num">0.0</td><td class="num">0.0</td><td class="num">0.0</td><td class="num">0.0</td><td class="num">0.0</td><td class="num">0.0</td><td class="num">0.0</td><td class="num">0.0</td></tr>
+<tr><td><strong>GMP</strong></td><td class="num"><strong>7.2</strong></td><td class="num"><strong>10.2</strong></td><td class="num"><strong>6.7</strong></td><td class="num"><strong>4.5</strong></td><td class="num"><strong>3.9</strong></td><td class="num"><strong>2.9</strong></td><td class="num"><strong>2.0</strong></td><td class="num"><strong>3.2</strong></td></tr>
+<tr><td><em>Memo: equity weight, %</em></td><td class="num"><em>25</em></td><td class="num"><em>27</em></td><td class="num"><em>33</em></td><td class="num"><em>41</em></td><td class="num"><em>40</em></td><td class="num"><em>31</em></td><td class="num"><em>46</em></td><td class="num"><em>44</em></td></tr>
+</tbody></table></div>
+<p>Sleeves carry yields before they hold any weight; they enter the GMP when their weight turns positive
+(inflation-linked from 1982, high yield from 1985, EM debt from 1996, all at small weights).</p>
+<p>The GMP&rsquo;s cash distribution yield was last above 5% in May 1997. Its minimum, 1.8% in
+December 2020, came when ten-year yields across the government sleeve averaged under 1% and equities were close to
+half the portfolio. By June 2026 it had recovered to 3.1%, still below every year before 2009.</p>
+<h3>5.2 Why it fell: yields, not weights &mdash; and payout policy</h3>
+<div class="scroll"><table>
+<caption style="text-align:left;caption-side:top;font-size:.93rem;color:var(--muted);padding:.3rem 0">Table 7. Change in the GMP&rsquo;s cash distribution yield between annual averages, percentage points (author&rsquo;s calculations)</caption>
+<thead><tr><th></th><th style="text-align:right">1981 &rarr; 2021</th><th style="text-align:right">2021 &rarr; 2025</th><th style="text-align:right">1976 &rarr; 2025</th></tr></thead><tbody>
+<tr><td>Change in GMP yield</td><td class="num">-8.22</td><td class="num">+1.26</td><td class="num">-3.93</td></tr>
+<tr><td>of which: weights</td><td class="num">-0.16</td><td class="num">-0.06</td><td class="num">-0.69</td></tr>
+<tr><td>of which: sleeve yields</td><td class="num">-8.06</td><td class="num">+1.32</td><td class="num">-3.24</td></tr>
+<tr><td>Largest yield component</td><td class="num">DM government bonds -3.34</td><td class="num">DM government bonds +0.53</td><td class="num">DM government bonds -1.58</td></tr>
+<tr><td>Largest weight component</td><td class="num">DM government bonds -0.80</td><td class="num">Investment-grade credit -0.04</td><td class="num">DM government bonds -1.03</td></tr>
+</tbody></table></div>
+<p>Weights are valued at the average yields of the two dates, yields at the average weights.</p>
+<p>The shift from bonds to equities took about 0.7 points off the yield over the full sample, but the
+forty-year fall is the fall in interest rates: government bonds account for 3.3 of the 8.2
+points. The fall in the equity dividend yield, from 4.4% to 1.9%, is the one component that does
+not mean capital earned less. Dividends are a policy choice. In the United States they grew 1.0 points a
+year more slowly than earnings over the period, as companies retained more and bought back shares (Boudoukh, Michaely,
+Richardson and Roberts 2007); that return reached holders through price, and Table 3 counts it there.</p>
+<h3>5.3 Who pays</h3>
+<div class="scroll"><table>
+<caption style="text-align:left;caption-side:top;font-size:.93rem;color:var(--muted);padding:.3rem 0">Table 8. Cash distributions by payer, % of total (author&rsquo;s calculations)</caption>
+<thead><tr><th></th><th style="text-align:right">1976</th><th style="text-align:right">1981</th><th style="text-align:right">1984</th><th style="text-align:right">1990</th><th style="text-align:right">2000</th><th style="text-align:right">2007</th><th style="text-align:right">2012</th><th style="text-align:right">2021</th><th style="text-align:right">2025</th></tr></thead><tbody>
+<tr><td>Governments</td><td class="num">48</td><td class="num">44</td><td class="num">46</td><td class="num">40</td><td class="num">23</td><td class="num">20</td><td class="num">17</td><td class="num">13</td><td class="num">25</td></tr>
+<tr><td>Companies: interest</td><td class="num">32</td><td class="num">35</td><td class="num">33</td><td class="num">35</td><td class="num">42</td><td class="num">38</td><td class="num">35</td><td class="num">28</td><td class="num">30</td></tr>
+<tr><td>Companies: dividends</td><td class="num">14</td><td class="num">10</td><td class="num">9</td><td class="num">11</td><td class="num">14</td><td class="num">23</td><td class="num">35</td><td class="num">46</td><td class="num">27</td></tr>
+<tr><td>Households: mortgage interest</td><td class="num">5</td><td class="num">10</td><td class="num">11</td><td class="num">14</td><td class="num">18</td><td class="num">15</td><td class="num">8</td><td class="num">7</td><td class="num">9</td></tr>
+<tr><td>Emerging-market issuers</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">3</td><td class="num">4</td><td class="num">6</td><td class="num">6</td><td class="num">8</td></tr>
+</tbody></table></div>
+<p>Central-bank holdings are netted out (coupons paid to central banks are largely remitted to their own treasuries).
+Gold pays nothing. EM debt mixes sovereign and corporate issuers.</p>
+<p>Between 1976 and 2021 the GMP&rsquo;s cash flow turned from a mainly fiscal one into a mainly corporate one:
+government yields fell furthest, and from 2008 the three largest central banks bought a large part of the government
+sleeve. Since 2022 governments&rsquo; share has almost doubled. The household row is the part of rent that reaches the
+investable portfolio: mortgage interest, paid out of housing services, passed through securitised debt.</p>
+<div class="scroll"><table>
+<caption style="text-align:left;caption-side:top;font-size:.93rem;color:var(--muted);padding:.3rem 0">Table 9. Cash distributions on the whole investable GMP (author&rsquo;s calculations; capital and cash at year-end; hours worked from the Penn World Table, complete for 2005&ndash;2023)</caption>
+<thead><tr><th></th><th style="text-align:right">1976</th><th style="text-align:right">1981</th><th style="text-align:right">1984</th><th style="text-align:right">1990</th><th style="text-align:right">2000</th><th style="text-align:right">2007</th><th style="text-align:right">2012</th><th style="text-align:right">2021</th><th style="text-align:right">2025</th></tr></thead><tbody>
+<tr><td>Investable capital, year-end, US$ tn</td><td class="num">3.8</td><td class="num">7.2</td><td class="num">10.5</td><td class="num">24.5</td><td class="num">56.2</td><td class="num">111.1</td><td class="num">122.8</td><td class="num">175.4</td><td class="num">231.2</td></tr>
+<tr><td>World GDP, US$ tn</td><td class="num">6.6</td><td class="num">11.9</td><td class="num">12.5</td><td class="num">23.0</td><td class="num">34.0</td><td class="num">58.6</td><td class="num">76.1</td><td class="num">98.8</td><td class="num">118.3</td></tr>
+<tr><td>Capital &divide; GDP, %</td><td class="num">58</td><td class="num">61</td><td class="num">84</td><td class="num">106</td><td class="num">165</td><td class="num">190</td><td class="num">161</td><td class="num">178</td><td class="num">195</td></tr>
+<tr><td>Cash distributions, US$ tn</td><td class="num">0.26</td><td class="num">0.79</td><td class="num">0.97</td><td class="num">1.69</td><td class="num">2.38</td><td class="num">4.31</td><td class="num">3.44</td><td class="num">3.65</td><td class="num">7.26</td></tr>
+<tr class="bold"><td>Cash distributions &divide; GDP, %</td><td class="num">4.0</td><td class="num">6.6</td><td class="num">7.8</td><td class="num">7.3</td><td class="num">7.0</td><td class="num">7.4</td><td class="num">4.5</td><td class="num">3.7</td><td class="num">6.1</td></tr>
+<tr><td>Cash distributions, bn world hours</td><td class="num">127</td><td class="num">235</td><td class="num">301</td><td class="num">284</td><td class="num">314</td><td class="num">343</td><td class="num">227</td><td class="num">200</td><td class="num">345</td></tr>
+<tr><td>&hellip; per inhabitant, hours</td><td class="num">31</td><td class="num">52</td><td class="num">63</td><td class="num">54</td><td class="num">51</td><td class="num">51</td><td class="num">32</td><td class="num">25</td><td class="num">42</td></tr>
+<tr><td>&hellip; % of hours worked, 43-country panel</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">7.5</td><td class="num">4.8</td><td class="num">4.0</td><td class="num">&mdash;</td></tr>
+</tbody></table></div>
+<p>The 2025 capital figure, US$231 trillion at year-end, is of the same order as the institutional estimates
+reviewed in the first note (US$221 trillion in March 2026 on State Street&rsquo;s definition). The cash yield fell by
+two-thirds between 1981 and 2025 while cash distributions as a share of world output moved little (6.6% to
+6.1%), because capital more than tripled relative to GDP. In hours, the 2025 distributions were
+345 billion hours of world work, about 42 hours for each of the world&rsquo;s inhabitants;
+for the years with complete hours data (2005&ndash;2023) they were between 3.4% (2020, a year not shown in Table 9) and 7.5% (2007) of all hours worked in the 43-country panel.</p>
+
+<h2 id="spending">6. Spending the cash, in hours</h2>
+<h3>6.1 A holding that spends its distributions, and one that does not</h3>
+<figure><img src="img/v2_fig4.png" alt="Figure 4. A GMP holding bought in January 1976"><figcaption>Figure 4. A GMP holding bought in January 1976: value with distributions reinvested, in world hours; and the distributions of the same holding when every distribution is spent, in US dollars, US consumer prices and world hours. December 1976 = 100, log scale. Author&rsquo;s calculations.</figcaption></figure>
+<div class="scroll"><table>
+<caption style="text-align:left;caption-side:top;font-size:.93rem;color:var(--muted);padding:.3rem 0">Table 10. A GMP holding worth 10,000 world hours in January 1976 (author&rsquo;s calculations)</caption>
+<thead><tr><th></th><th style="text-align:right">1976-12</th><th style="text-align:right">1981-12</th><th style="text-align:right">1990-12</th><th style="text-align:right">2000-12</th><th style="text-align:right">2008-12</th><th style="text-align:right">2021-12</th><th style="text-align:right">2026-06</th></tr></thead><tbody>
+<tr><td>World hour, US$ (chained)</td><td class="num">2.1</td><td class="num">3.4</td><td class="num">5.9</td><td class="num">7.6</td><td class="num">12.1</td><td class="num">18.3</td><td class="num">21.6</td></tr>
+<tr><td><strong>Distributions reinvested: value, world hours</strong></td><td class="num"><strong>10,732</strong></td><td class="num"><strong>9,625</strong></td><td class="num"><strong>19,746</strong></td><td class="num"><strong>38,718</strong></td><td class="num"><strong>36,254</strong></td><td class="num"><strong>56,389</strong></td><td class="num"><strong>58,036</strong></td></tr>
+<tr><td>Distributions spent: value, world hours</td><td class="num">9,989</td><td class="num">5,997</td><td class="num">6,073</td><td class="num">7,087</td><td class="num">4,785</td><td class="num">5,139</td><td class="num">4,588</td></tr>
+<tr><td>Distributions spent: past 12 months, world hours</td><td class="num">709</td><td class="num">635</td><td class="num">436</td><td class="num">326</td><td class="num">213</td><td class="num">100</td><td class="num">142</td></tr>
+<tr><td>Distributions spent: US$, 1976 = 100</td><td class="num">100</td><td class="num">149</td><td class="num">174</td><td class="num">177</td><td class="num">195</td><td class="num">129</td><td class="num">215</td></tr>
+<tr><td>Distributions spent: US consumer prices, 1976 = 100</td><td class="num">100</td><td class="num">93</td><td class="num">76</td><td class="num">58</td><td class="num">52</td><td class="num">27</td><td class="num">37</td></tr>
+<tr><td>Distributions spent: world hours, 1976 = 100</td><td class="num">100</td><td class="num">90</td><td class="num">62</td><td class="num">46</td><td class="num">30</td><td class="num">14</td><td class="num">20</td></tr>
+</tbody></table></div>
+<p>The world-hour level in the first row is the chained series anchored to the panel in 2014-Q1 (Section 2); it is
+US$21.6 in June 2026, whereas the second note&rsquo;s panel ratio for 2026-Q2 is US$20.7 (Nakanishi 2026b, Section 4.3).
+The two differ by construction: the chained series holds the country mix fixed period to period, the panel ratio lets
+hours shift toward lower-output countries. Every ratio in Table 10 uses the chained series.</p>
+<p>Reinvested, the holding commanded 5.8 times the hours it cost by mid-2026, a return of 3.5% a year
+in world hours; its low point, 8,905 hours, came in March 1980. Spent, its distributions rose in dollars
+(1.6% a year) but fell by 2.0% a year against US consumer prices and by 3.2% a
+year against the value of the world&rsquo;s work, and the holding kept 46% of the hours it cost. The
+difference between the two rules is not a difference in what capital generated &mdash; the portfolio is the same &mdash;
+but in whether the price part of the return was left to compound.</p>
+<h3>6.2 In hours, a coupon is mostly a refund</h3>
+<div class="scroll"><table>
+<caption style="text-align:left;caption-side:top;font-size:.93rem;color:var(--muted);padding:.3rem 0">Table 11. Income, price and valuation by sleeve, from the backtest engine&rsquo;s investability date for each sleeve to June 2026, % a year (author&rsquo;s calculations)</caption>
+<thead><tr><th>Sleeve</th><th style="text-align:right">From</th><th style="text-align:right">Income</th><th style="text-align:right">Price</th><th style="text-align:right">of which valuation</th><th style="text-align:right">Price excluding valuation</th><th style="text-align:right">World hour</th><th style="text-align:right">Total excluding valuation &minus; hour</th></tr></thead><tbody>
+<tr><td>Equities</td><td class="num">1976</td><td class="num">2.7</td><td class="num">7.8</td><td class="num">1.6</td><td class="num">6.2</td><td class="num">4.8</td><td class="num">+4.1</td></tr>
+<tr><td>DM government bonds</td><td class="num">1976</td><td class="num">5.4</td><td class="num">0.7</td><td class="num">0.7</td><td class="num">-0.0</td><td class="num">4.8</td><td class="num">+0.6</td></tr>
+<tr><td>Investment-grade credit</td><td class="num">1976</td><td class="num">7.5</td><td class="num">0.1</td><td class="num">0.4</td><td class="num">-0.3</td><td class="num">4.8</td><td class="num">+2.4</td></tr>
+<tr><td>Securitised</td><td class="num">1976</td><td class="num">6.5</td><td class="num">-0.1</td><td class="num">0.3</td><td class="num">-0.4</td><td class="num">4.8</td><td class="num">+1.2</td></tr>
+<tr><td>Gold</td><td class="num">1976</td><td class="num">0.0</td><td class="num">6.6</td><td class="num">6.6</td><td class="num">0.0</td><td class="num">4.8</td><td class="num">-4.8</td></tr>
+<tr><td>EM debt</td><td class="num">1993</td><td class="num">6.4</td><td class="num">-0.7</td><td class="num">0.5</td><td class="num">-1.1</td><td class="num">3.6</td><td class="num">+1.6</td></tr>
+<tr><td>Inflation-linked</td><td class="num">1997</td><td class="num">3.8</td><td class="num">0.2</td><td class="num">0.1</td><td class="num">0.1</td><td class="num">3.5</td><td class="num">+0.4</td></tr>
+<tr><td>High yield</td><td class="num">1984</td><td class="num">8.7</td><td class="num">-1.2</td><td class="num">0.7</td><td class="num">-1.8</td><td class="num">4.5</td><td class="num">+2.4</td></tr>
+</tbody></table></div>
+<p>Income is the arithmetic mean yield; the other columns are log returns, so the columns add only approximately.
+Equity valuation uses the world dividend&ndash;price ratio; the negative bond values of &ldquo;price excluding
+valuation&rdquo; are mainly credit losses and proxy error.</p>
+<p>Two of these results follow from the construction rather than from the data, and should be read as such. The bond
+sleeves are built from par bonds, whose price moves only when their yield does, so their &ldquo;price excluding
+valuation&rdquo; is zero by definition apart from credit losses and proxy error; and gold&rsquo;s whole price change is
+classed as valuation, so that gold &ldquo;generates nothing&rdquo; is the definition restated. What the data add is the
+size of the coupon relative to the hour, and the equity row, where nothing is imposed.</p>
+<p>Excluding valuation, no bond sleeve gained anything through price in fifty years. A bond&rsquo;s whole return is its
+coupon, and in hours the coupon&rsquo;s first job is to make up for the fall of the currency against the work of the
+world, 4.8% a year over the sample. What is left after that refund &mdash; between 0.4 and
+2.4 points a year &mdash; is the part of a bond&rsquo;s coupon that is income in the hours sense. Equities
+paid a smaller cash yield and grew their price 6.2% a year without re-rating, so what they generated exceeded
+the hour by 4.1 points a year while they paid out only 2.7. Gold generated nothing: its gain in
+hours (1.8% a year) was entirely a change in the price the market put on it.</p>
+<h3>6.3 Cash paid out vs total return in hours</h3>
+<figure><img src="img/v2_fig5.png" alt="Figure 5. Cash distribution yield vs total return in world hours, rolling 20-year windows"><figcaption>Figure 5. The GMP&rsquo;s cash distribution yield and its total return in world hours, twenty-year rolling windows. Shaded where cash exceeds the return in hours. Author&rsquo;s calculations.</figcaption></figure>
+<div class="scroll"><table>
+<caption style="text-align:left;caption-side:top;font-size:.93rem;color:var(--muted);padding:.3rem 0">Table 12. The GMP&rsquo;s cash distributions compared with its total return in world hours, % a year (author&rsquo;s calculations)</caption>
+<thead><tr><th></th><th style="text-align:right">1976&ndash;1981</th><th style="text-align:right">1982&ndash;2000</th><th style="text-align:right">2001&ndash;2021</th><th style="text-align:right">2022&ndash;2026</th><th style="text-align:right">1976&ndash;2026</th></tr></thead><tbody>
+<tr><td>Cash distribution yield (a)</td><td class="num">8.0</td><td class="num">6.4</td><td class="num">3.3</td><td class="num">3.2</td><td class="num">5.0</td></tr>
+<tr><td>Price return, distributions spent</td><td class="num">1.0</td><td class="num">5.2</td><td class="num">2.7</td><td class="num">1.2</td><td class="num">3.3</td></tr>
+<tr><td>Total return (log)</td><td class="num">8.9</td><td class="num">11.6</td><td class="num">6.0</td><td class="num">4.4</td><td class="num">8.3</td></tr>
+<tr><td>Growth of the world hour in US$</td><td class="num">9.5</td><td class="num">4.3</td><td class="num">4.2</td><td class="num">3.7</td><td class="num">4.8</td></tr>
+<tr><td>Total return in world hours (b)</td><td class="num">-0.6</td><td class="num">7.3</td><td class="num">1.8</td><td class="num">0.6</td><td class="num">3.5</td></tr>
+<tr class="bold"><td>Cash paid out in excess of (b): (a) &minus; (b)</td><td class="num">8.6</td><td class="num">-0.9</td><td class="num">1.5</td><td class="num">2.5</td><td class="num">1.6</td></tr>
+</tbody></table></div>
+<p>The claim that survives from v1.0 is this, and only this: a holder who spends the GMP&rsquo;s cash distributions spends
+more than the portfolio&rsquo;s total return in hours, and so consumes the holding measured in hours. Over the whole
+sample the excess was 1.6 points a year (2.6 excluding valuation changes). In rolling
+windows:</p>
+<ul>
+<li><strong>Twenty-year windows (367):</strong> cash distributions exceeded the total return in hours in
+92% of windows, by a median 1.5 points. They fell short in only 31 windows, all ending
+between November 1999 and July 2002 &mdash; windows covering the two decades of falling inflation and
+rising valuations after 1980. The total return in hours was positive in every twenty-year window, with a low of
+1.1% a year in the window ending October 2023 and a median of 3.0%.</li>
+<li><strong>Ten-year windows (487):</strong> cash exceeded it in 78% of windows, by a median
+1.0 point; the total return in hours ranged from -0.5% (window ending February 2009) upward,
+with a median of 3.6%.</li>
+</ul>
+<p>This is a statement about a spending rule, not about what capital generates. It says that the cash a portfolio
+distributes is the wrong guide to what can be spent from it in hours: too much when most of the cash is bond coupons,
+as in the GMP, and too little for an equity holding whose price did the work.</p>
+
+<h2 id="rent">7. Outside the GMP: rent</h2>
+<p>The investable GMP excludes housing, which is most of the world&rsquo;s non-financial wealth; rent reaches it only
+through listed real-estate companies (inside equities) and mortgage interest (Table 8). For reference, the net
+rental yield on housing in the Macrohistory Database &mdash; rent less maintenance, management, insurance and
+depreciation (Jord&agrave; et al. 2019) &mdash; weighted by GDP in US dollars across the 16 countries
+with data, was 5.5% in 1976, 4.3% in 2000 and 2.7% in 2020 &mdash; against
+7.2%, 4.5% and 1.9% for the GMP&rsquo;s cash yield in the same years. Neither
+side is net of taxes: the housing yield is before property taxes, which Jord&agrave; et al. (2019) put at under one
+point a year, and before transaction costs of about 7.7% of value per round trip; the GMP&rsquo;s cash yield is before
+withholding and fund costs. The levels are therefore roughly comparable but not equal; the direction is comparable. A version of Table 3 for housing would need house-price
+and rent series by country and is left for a fourth note, which will take the same unit to the household balance sheet
+&mdash; the home, pension claims and the investable portfolio together, over a working life &mdash; where housing is the
+largest asset and the question of this note (what is generated, what is paid, what is needed to stand still) is asked of a
+life rather than of a market.</p>
+
+<h2 id="robustness">8. Robustness</h2>
+<div class="scroll"><table>
+<caption style="text-align:left;caption-side:top;font-size:.93rem;color:var(--muted);padding:.3rem 0">Table 13. The GMP&rsquo;s cash distribution yield and the spend-everything holding under alternative yield constructions (author&rsquo;s calculations)</caption>
+<thead><tr><th>Variant</th><th style="text-align:right">Mean 1976&ndash;2026, %</th><th style="text-align:right">1981, %</th><th style="text-align:right">2021, %</th><th style="text-align:right">Last 12 months, %</th><th style="text-align:right">Price return, % a year</th><th style="text-align:right">Distributions in hours, end &divide; start</th></tr></thead><tbody>
+<tr class="bold"><td>Baseline</td><td class="num">5.03</td><td class="num">10.18</td><td class="num">1.96</td><td class="num">3.14</td><td class="num">3.28</td><td class="num">0.20</td></tr>
+<tr><td>Equities: Shiller US only</td><td class="num">5.00</td><td class="num">10.36</td><td class="num">1.72</td><td class="num">2.83</td><td class="num">3.31</td><td class="num">0.18</td></tr>
+<tr><td>Equities: Shiller US + EFA/EEM/ACWI fund composite (v1.0)</td><td class="num">5.08</td><td class="num">10.36</td><td class="num">1.87</td><td class="num">3.12</td><td class="num">3.23</td><td class="num">0.20</td></tr>
+<tr><td>Government: seven-year trailing mean yield (running coupon)</td><td class="num">5.12</td><td class="num">8.94</td><td class="num">2.04</td><td class="num">2.83</td><td class="num">3.12</td><td class="num">0.18</td></tr>
+<tr><td>Inflation-linked: real coupon only, no accretion</td><td class="num">5.00</td><td class="num">10.18</td><td class="num">1.87</td><td class="num">3.08</td><td class="num">3.31</td><td class="num">0.20</td></tr>
+<tr><td>EM debt: Baa + 2.0 (the return proxy's yield)</td><td class="num">5.06</td><td class="num">10.18</td><td class="num">2.03</td><td class="num">3.21</td><td class="num">3.25</td><td class="num">0.20</td></tr>
+<tr><td>All credit sleeves 1 point lower</td><td class="num">4.69</td><td class="num">9.87</td><td class="num">1.67</td><td class="num">2.87</td><td class="num">3.62</td><td class="num">0.23</td></tr>
+<tr><td>Bond sleeves at index-fund cash-distribution levels</td><td class="num">4.83</td><td class="num">9.97</td><td class="num">1.89</td><td class="num">2.88</td><td class="num">3.48</td><td class="num">0.21</td></tr>
+<tr><td>Weights: two-year lag (from 1977)</td><td class="num">5.00</td><td class="num">10.39</td><td class="num">1.98</td><td class="num">3.25</td><td class="num">3.17</td><td class="num">0.23</td></tr>
+</tbody></table></div>
+<p>&ldquo;Distributions in hours, end &divide; start&rdquo; is the spend-everything holding&rsquo;s twelve-month distributions
+in world hours at June 2026 divided by those for 1976.</p>
+<p>Every yield variant moves return between cash and price and leaves the total return unchanged, so every total and
+net figure in Tables 3, 4, 5 and 12 stands. The lowest-yield variant lowers the average cash yield by a third of a
+point; on that basis about 47 of the 83 hours in Table 3 would be cash rather than
+50, and the excess of cash over the total return in hours would be 1.2 points a year rather than
+1.6. The valuation measure (Table 4) moves the net gain excluding valuation between 21 and
+24 hours per 1,000. The two-year weight lag moves nothing material. The world hour&rsquo;s own robustness is in
+the second note: purchasing-power-parity weights move its end-2026 level by about &plusmn;3%, and the treatment of
+China by about &plusmn;8%; every &ldquo;needed&rdquo; and &ldquo;net&rdquo; figure here scales with it.</p>
+
+<h2 id="limitations">9. Limitations</h2>
+<p>Stated in the order of their likely importance.</p>
+<p><strong>The equity valuation measure mixes re-rating with payout policy.</strong> The world dividend&ndash;price
+ratio is the only world-specific measure available without vendor data, but it falls when firms shift from dividends
+to repurchases as well as when prices re-rate. Section 4.2 bounds the effect with two US earnings-based measures; on
+all three the net gain excluding valuation is 2.1&ndash;2.4% a year. Trailing measures
+make the adjustment unreliable over windows shorter than a full cycle, which is why decade values of the valuation
+change are not emphasised.</p>
+<p><strong>The equity panel is sixteen countries.</strong> Canada, Korea, China, India and Taiwan are assumed to
+yield the panel average; they were under a tenth of world capitalisation before 2000 and about three-tenths in
+2020.</p>
+<p><strong>&ldquo;Earnings growth and other&rdquo; is a residual.</strong> It contains everything not identified as cash
+or valuation: for equities, the growth of dividends per share after dilution and buybacks; for bonds, credit losses
+and proxy error; for the portfolio, the compounding difference between arithmetic and log returns.</p>
+<p><strong>Yields are modelled, not observed distributions.</strong> The bond sleeves use long-maturity market yields,
+0 to 0.7 points above index-fund cash distributions after 2004 (Table 2). This affects the split between cash and
+price, not the total.</p>
+<p><strong>Promised yields are not realised income.</strong> Credit yields are promised coupons; defaults appear in the
+price component.</p>
+<p><strong>Dividends only, gross of taxes and costs.</strong> Buybacks appear in price, not in cash. Withholding and
+income taxes, fund fees, trading costs and gold&rsquo;s storage cost are ignored.</p>
+<p><strong>The world hour is weakest where it matters most.</strong> Before 2014 it is an annual series interpolated
+to months, its hours data are the weakest input, and the latest quarters are provisional (Nakanishi 2026b, Sections
+8&ndash;9). The growth of the hour, 4.8% a year in dollars, is subtracted in every net figure.</p>
+<p><strong>A price gain is not output.</strong> Tables 3 and 5 express total returns in hours of work. A capital gain
+is a claim on future output whose value the market sets; converting it to hours says what it could buy, not what was
+produced.</p>
+<p><strong>Aggregate values inherit the index engine&rsquo;s assumptions.</strong> Central-bank holdings are netted for
+three institutions only; the high-yield and inflation-linked shares of their blocks are fixed ratios; capital covers
+the investable portfolio only.</p>
+<p><strong>Nominal, dollar-based, one history.</strong> All figures are in US dollars; the world hour is a nominal unit
+that contains exchange rates. The rolling windows overlap heavily &mdash; the 367 twenty-year windows contain
+about two and a half independent ones &mdash; so shares of windows are historical frequencies, not probabilities.</p>
+<p><strong>Exploratory analysis.</strong> The questions, the decompositions and the variants were chosen with the
+results visible, and versions 1.1 and 1.2 were revised after review of the earlier versions. Nothing here was
+pre-registered.</p>
+
+<h2 id="disclaimer">10. Disclaimer</h2>
+<p>This note is general information and a research record addressed to no particular reader. It does not recommend
+any security, fund or transaction, does not suggest a spending or withdrawal rate for any person, does not suggest
+timing, and is not individualised advice. The exchange-traded funds named in Section 3 are used only as public sources
+of distribution data. The author is not a regulated investment adviser or licensed financial services provider and
+does not respond to individual requests for advice. Historical and simulated figures do not indicate future results;
+backtest figures are hypothetical and are not the results of any actual account. No representation is made as to the
+accuracy or completeness of the information, and the author accepts no liability for any loss arising from its use.
+All tables are the author&rsquo;s own calculations from public data; no figures from other publications are
+reproduced. Index and fund names are trademarks of their owners. Nothing here is legal or tax advice.</p>
+<p>The author resides in Japan. This note provides general information to an unspecified audience and does not
+constitute investment advisory business under the Financial Instruments and Exchange Act of Japan.</p>
+
+<h2 id="revisions">Revision history</h2>
+<p><strong>v1.4 (23 September 2026).</strong> Corrects Section 7: the Macrohistory Database housing rental yield is net of running costs and depreciation (Jord&agrave; et al. 2019), not gross as v1.3 stated; the section now says what is and is not deducted on each side. No figure in Tables 1&ndash;13 changes.</p>
+<p><strong>v1.3 (20 September 2026).</strong> Adds the comparison with world GDP growth as distinct from the growth of the hour (Table 5 memo rows, Section 4.3); states where results follow from the construction rather than from the data (Section 6.2); reconciles the chained world-hour level with the panel level of the second note (Table 10); corrects the licence statement for series derived from the Macrohistory Database (CC BY-NC-SA 4.0) and from fund distribution records; moves this history from the front of the note. No figure in Tables 1&ndash;13 changes.</p>
+<p><strong>v1.0&ndash;v1.2 (17 September 2026).</strong> Version 1.0 measured what the world&rsquo;s capital <em>pays</em> &mdash; cash
+dividends and coupons &mdash; and drew its headline conclusions from that alone. That left out the part of the return
+that equities deliver through price, which is most of it, and it let a cash-only yield stand for what capital
+generates. Version 1.1 put total return first, split it into cash, valuation change and the rest (Section 4), and kept
+the cash analysis as the account of how the return is delivered (Sections 5&ndash;6). Version 1.2 makes three further
+changes, none of which alters a conclusion. First, the world equity dividend yield no longer uses index-vendor
+data: from 2001 to 2020 v1.1 used MSCI index levels, whose terms of use do not clearly permit derived series in a
+publication; v1.2 uses the Macrohistory Database&rsquo;s dividend&ndash;price ratios for sixteen countries, weighted by
+World Bank market capitalisation, and the ACWI fund&rsquo;s distributions from 2021. At every date for which v1.1 reported a value, the two series differ by
+less than 0.1 points (Appendix). Second, the equity valuation measure is now the world dividend&ndash;price ratio
+built for Table 1, which is world-specific, with the US trailing price&ndash;earnings ratio and CAPE as alternatives;
+v1.1 had the US ratio as baseline. Third, the aggregate table (Table 9) reports year-end capital; v1.1 reported the
+average of adjacent year-ends under a year-end label, which understated the 2025 figure by $18 trillion. A data
+gap was corrected in v1.1: US consumer prices for October and November 2025 were not published, and v1.0 left the
+inflation-linked sleeve&rsquo;s yield undefined in those months instead of interpolating.</p>
+
+
+<h2 id="references">References</h2>
+<p>Arnott, R. D. and Bernstein, P. L. (2002). &ldquo;What Risk Premium Is &lsquo;Normal&rsquo;?&rdquo; <em>Financial Analysts Journal</em>, 58(2), 64&ndash;85.</p>
+<p>Boudoukh, J., Michaely, R., Richardson, M. and Roberts, M. R. (2007). &ldquo;On the Importance of Measuring Payout Yield: Implications for Empirical Asset Pricing.&rdquo; <em>Journal of Finance</em>, 62(2), 877&ndash;915.</p>
+<p>Campbell, J. Y. and Shiller, R. J. (1988). &ldquo;The Dividend-Price Ratio and Expectations of Future Dividends and Discount Factors.&rdquo; <em>Review of Financial Studies</em>, 1(3), 195&ndash;228.</p>
+<p>Dimson, E., Marsh, P. and Staunton, M. (2002). <em>Triumph of the Optimists: 101 Years of Global Investment Returns</em>. Princeton University Press.</p>
+<p>Federal Reserve Bank of St. Louis. <em>FRED</em>: DGS10, GS5, AAA, BAA, DFII10, CPIAUCSL; OECD long-term interest rates (IRLTLT01) for Japan, Germany, the UK, France, Canada and Italy; Penn World Table employment and hours series. Accessed September 2026.</p>
+<p>Feenstra, R. C., Inklaar, R. and Timmer, M. P. (2015). &ldquo;The Next Generation of the Penn World Table.&rdquo; <em>American Economic Review</em>, 105(10), 3150&ndash;3182.</p>
+<p>Ibbotson, R. G. and Chen, P. (2003). &ldquo;Long-Run Stock Returns: Participating in the Real Economy.&rdquo; <em>Financial Analysts Journal</em>, 59(1), 88&ndash;98.</p>
+<p>Jord&agrave;, &Ograve;., Knoll, K., Kuvshinov, D., Schularick, M. and Taylor, A. M. (2019). &ldquo;The Rate of Return on Everything, 1870&ndash;2015.&rdquo; <em>Quarterly Journal of Economics</em>, 134(3), 1225&ndash;1298.</p>
+<p>Jord&agrave;, &Ograve;., Schularick, M. and Taylor, A. M. (2017). &ldquo;Macrofinancial History and the New Business Cycle Facts.&rdquo; In M. Eichenbaum and J. A. Parker (eds.), <em>NBER Macroeconomics Annual 2016</em>, vol. 31. University of Chicago Press. Jord&agrave;&ndash;Schularick&ndash;Taylor Macrohistory Database, release 6, accessed September 2026.</p>
+<p>Karabarbounis, L. and Neiman, B. (2014). &ldquo;The Global Decline of the Labor Share.&rdquo; <em>Quarterly Journal of Economics</em>, 129(1), 61&ndash;103.</p>
+<p>Miller, M. H. and Modigliani, F. (1961). &ldquo;Dividend Policy, Growth, and the Valuation of Shares.&rdquo; <em>Journal of Business</em>, 34(4), 411&ndash;433.</p>
+<p>Nakanishi, K. (2026a). &ldquo;Owning the Market as It Is: A Half-Century Look at the Global Market Portfolio.&rdquo; Research note, SSRN. doi:10.2139/ssrn.7394599.</p>
+<p>Nakanishi, K. (2026b). &ldquo;Measuring Assets in Hours of the World&rsquo;s Work: A Labour-Time Numeraire from Public Data.&rdquo; Research note, SSRN. doi:10.2139/ssrn.7445203.</p>
+<p>Nakanishi, K. (2026c). <em>Global Market Portfolio Weight History, 1976&ndash;2026</em>, v1.0.0. Zenodo. doi:10.5281/zenodo.22151403 (all versions: doi:10.5281/zenodo.22151402).</p>
+<p>Piketty, T. (2014). <em>Capital in the Twenty-First Century</em>. Harvard University Press.</p>
+<p>Rognlie, M. (2015). &ldquo;Deciphering the Fall and Rise in the Net Capital Share: Accumulation or Scarcity?&rdquo; <em>Brookings Papers on Economic Activity</em>, Spring 2015, 1&ndash;69.</p>
+<p>Shiller, R. J. <em>Online Data</em>: US stock prices, dividends, earnings and CAPE, monthly (ie_data.xls). Accessed September 2026.</p>
+<p>World Bank. <em>World Development Indicators</em>: market capitalisation of listed domestic companies (CM.MKT.LCAP.CD), by country and world; GDP, world (NY.GDP.MKTP.CD); population. Accessed September 2026.</p>
+<p>Yahoo Finance. Monthly prices and distributions of ACWI, VT, IEF, BWX, LQD, MBB, EMB, TIP and HYG. Accessed September 2026.</p>
+
+<h2 id="appendix">Appendix: reproduction</h2>
+<div class="scroll"><table>
+<caption style="text-align:left;caption-side:top;font-size:.93rem;color:var(--muted);padding:.3rem 0"></caption>
+<thead><tr><th>File</th><th>Content</th></tr></thead><tbody>
+<tr><td><code>jst_equity_dy.py</code></td><td>World equity dividend&ndash;price ratio from the Macrohistory panel and the ACWI fund (Table 1, Figure A1)</td></tr>
+<tr><td><code>build_v2.py</code></td><td>Floating weights, yields and the fund cross-check, the three-way decomposition, hours generated, flows as a share of world GDP, payers, holdings, sleeves, rolling windows, rent, robustness, Figures 1&ndash;5</td></tr>
+<tr><td><code>build_paper_v2.py</code></td><td>All tables and every number quoted in the text, generated from <code>output_v2/</code></td></tr>
+<tr><td><code>output_v2/build_log.json</code></td><td>Input checksums, reproduction check, constants, rolling-window statistics</td></tr>
+<tr><td><code>output_v2/*.csv</code></td><td>Monthly components, sleeve yields, flows, holdings, tables</td></tr>
+</tbody></table></div>
+<p>Inputs from earlier notes (SHA-256), verified at run time:</p>
+<pre><code class="hash">67b88001829194240f33fe24b9eb7f198235ea076c1956317c4cbbd3173b6397  monthly_returns_corrected.csv
+5008fbf33d85807290d9d18ef2ccf77c26c83584c2ecb359b2b9b0d4632aa708  four_series_returns_corrected.csv
+8d4aee2d7071e5a33283d6876eafc225c22e2b77e2c5abe3cc0f757b47261009  b61/pit_weights_v2.csv
+9e77d22d4d71802a3e8c6af447b9a5cc79b738ef3b145a77a43d9d655ca4d790  world_yardsticks_usd.csv
+2144f282c817a1df164d929b0a4f4d77efb9c61c87d3717bd116418ab85baf40  world_q_yardsticks_usd.csv
+893baf577a76f297aa46dad27b2c530c6defcbc69b5dd3efe772774fe3f9eed9  world_q_gdp_per_hour_level_usd.csv</code></pre>
+<p>Run: <code>python3 jst_equity_dy.py</code> &rarr; <code>python3 build_v2.py</code> &rarr; <code>python3 build_paper_v2.py</code>. Raw
+files (FRED, Shiller, Macrohistory Database, World Bank, fund histories) are in <code>data/</code>. No index-vendor
+data is used or redistributed. The equity dividend&ndash;price series built here differs from the v1.1 series that used
+MSCI index levels by less than 0.1 points at every date v1.1 reported (annual averages for 1976, 1981, 1990, 2000,
+2007, 2012, 2021 and 2025).</p>
+<figure><img src="img/v2_figA1.png" alt="Figure A1. World equity dividend-price ratio: construction"><figcaption>Figure A1. World equity dividend&ndash;price ratio: the Macrohistory panel weighted by market capitalisation, the ACWI fund&rsquo;s distributions plus fee, the US series, and the series used. Author&rsquo;s calculations.</figcaption></figure>
+
+<footer class="site">
+  <h2>Disclaimer</h2>
+  <p>This publication is independent, non-commercial research provided for informational and educational purposes only. It does not constitute investment advice, an offer, or a solicitation to buy or sell any security or financial product, and it is not personalized to any reader's circumstances. The author is not a registered investment adviser in any jurisdiction and does not provide individual advice. All investing involves risk, including loss of principal. Past performance and backtested results do not guarantee future results. Backtested results are hypothetical, do not reflect actual trading, and are net of no fees or costs unless stated otherwise.</p>
+  <h2>Third-party marks</h2>
+  <p>This research is not affiliated with, endorsed by, or sponsored by MSCI, State Street, Goldman Sachs, Bloomberg, BIS, BlackRock/iShares, Vanguard, State Street Global Advisors, Yahoo, or any index provider or data vendor mentioned. All trademarks are the property of their respective owners. References to third-party estimates and products are for scholarly comparison and data identification only.</p>
+  <p>The Capital Census is an independent, non-commercial research project. It is not affiliated with State Street, MSCI, or any index provider, nor with any government statistical agency. &lsquo;Global Market Portfolio&rsquo; and &lsquo;world hour&rsquo; are used as generic terms; &lsquo;CC-GMP&rsquo;, &lsquo;CC-WH&rsquo; and &lsquo;The Capital Census&rsquo; are the author&rsquo;s names for this project and its series.</p>
+  <h2>Corrections policy</h2>
+  <p>Corrections are made openly. Superseded figures remain visible in the revision history. We do not delete published results, including results unfavorable to our own prior claims.</p>
+  <p style="margin-top:1.5rem">The Capital Census &middot; Keisuke Nakanishi &middot; Independent Researcher &middot; <a href="https://orcid.org/0009-0000-3780-9450">ORCID 0009-0000-3780-9450</a></p>
+</footer>
+
+</body>
+</html>

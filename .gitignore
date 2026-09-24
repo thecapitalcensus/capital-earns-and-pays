@@ -1,0 +1,7 @@
+# third-party inputs that are not redistributed (see data/README.md and LICENSE.md)
+data/JSTdatasetR6.xlsx
+data/ie_data*.xls
+data/etf_*.csv
+inputs/engine/monthly_returns_corrected.csv
+__pycache__/
+.DS_Store

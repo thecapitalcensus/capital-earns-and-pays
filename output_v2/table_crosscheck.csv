@@ -1,0 +1,9 @@
+pair,from,months,model,fund,corr
+Equities : ACWI,2010-03,196,2.35,2.27,0.64
+Equities : VT,2010-06,193,2.35,2.21,0.61
+Government : 0.42 IEF + 0.58 BWX,2009-10,201,1.96,1.99,0.69
+Investment-grade : LQD,2004-07,264,4.93,4.21,0.88
+Securitised : MBB,2009-03,208,3.38,2.84,0.45
+EM debt : EMB,2009-12,199,5.13,5.13,0.65
+Inflation-linked : TIP,2005-12,247,3.42,3.28,0.7
+High yield : HYG,2009-04,207,6.53,6.53,0.68

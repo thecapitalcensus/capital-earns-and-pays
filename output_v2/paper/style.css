@@ -1,0 +1,56 @@
+:root {
+  color-scheme: light dark;
+  --fg: #1a1a1a;
+  --muted: #5c5c5c;
+  --bg: #ffffff;
+  --rule: rgba(0,0,0,.14);
+  --accent: #7a5c00;
+  --box: rgba(0,0,0,.035);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg: #e8e8e6;
+    --muted: #9a9a96;
+    --bg: #121212;
+    --rule: rgba(255,255,255,.16);
+    --accent: #d9b64a;
+    --box: rgba(255,255,255,.05);
+  }
+}
+* { box-sizing: border-box; }
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  color: var(--fg); background: var(--bg);
+  max-width: 52rem; margin: 0 auto; padding: 2.5rem 1.5rem 5rem;
+  line-height: 1.7; font-size: 1.02rem;
+  -webkit-text-size-adjust: 100%;
+}
+a { color: inherit; text-underline-offset: .18em; }
+a:hover { color: var(--accent); }
+
+header.site { border-bottom: 1px solid var(--rule); padding-bottom: 1rem; margin-bottom: 2.5rem; }
+.wordmark { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; text-decoration: none; }
+nav { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: 1.25rem; font-size: .92rem; }
+nav a { color: var(--muted); text-decoration: none; }
+nav a:hover, nav a[aria-current="page"] { color: var(--fg); }
+
+h1 { font-size: 1.85rem; letter-spacing: -0.015em; margin: 0 0 .4rem; }
+h2 { font-size: 1.15rem; margin: 2.75rem 0 .75rem; padding-bottom: .35rem; border-bottom: 1px solid var(--rule); }
+h3 { font-size: 1rem; margin: 1.75rem 0 .4rem; }
+.lede { color: var(--muted); margin-top: 0; }
+
+table { border-collapse: collapse; width: 100%; font-size: .93rem; }
+.scroll { overflow-x: auto; margin: 1rem 0; }
+th, td { text-align: left; padding: .55rem .75rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-weight: 600; white-space: nowrap; }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.box { background: var(--box); border: 1px solid var(--rule); border-radius: 6px; padding: 1rem 1.15rem; margin: 1.25rem 0; }
+.tbd { color: var(--accent); font-weight: 600; }
+code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .87em; }
+pre { background: var(--box); border: 1px solid var(--rule); border-radius: 6px; padding: 1rem; overflow-x: auto; line-height: 1.5; }
+.hash { word-break: break-all; }
+
+footer.site { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: .88rem; }
+footer.site h2 { font-size: .95rem; border: 0; margin: 1.5rem 0 .35rem; color: var(--fg); }
+footer.site p { margin: .5rem 0; }

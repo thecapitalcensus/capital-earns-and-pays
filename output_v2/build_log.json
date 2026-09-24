@@ -1,0 +1,124 @@
+{
+ "inputs_sha256": {
+  "monthly_returns_corrected.csv": "67b88001829194240f33fe24b9eb7f198235ea076c1956317c4cbbd3173b6397",
+  "four_series_returns_corrected.csv": "5008fbf33d85807290d9d18ef2ccf77c26c83584c2ecb359b2b9b0d4632aa708",
+  "b61/pit_weights_v2.csv": "8d4aee2d7071e5a33283d6876eafc225c22e2b77e2c5abe3cc0f757b47261009",
+  "world_yardsticks_usd.csv": "9e77d22d4d71802a3e8c6af447b9a5cc79b738ef3b145a77a43d9d655ca4d790",
+  "world_q_yardsticks_usd.csv": "2144f282c817a1df164d929b0a4f4d77efb9c61c87d3717bd116418ab85baf40",
+  "world_q_gdp_per_hour_level_usd.csv": "893baf577a76f297aa46dad27b2c530c6defcbc69b5dd3efe772774fe3f9eed9"
+ },
+ "reproduction_max_abs_diff": 9.8879238130678e-17,
+ "yield_constants": {
+  "EMD_Baa_plus": 0.12,
+  "EMD_fund_from": "2009-12-31",
+  "HY_Baa_plus": 1.434,
+  "HY_fund_from": "2009-04-30",
+  "EQ_panel_minus_ACWI_2011_20": 0.038,
+  "EQ_countries": [
+   "AUS",
+   "BEL",
+   "CHE",
+   "DEU",
+   "DNK",
+   "ESP",
+   "FIN",
+   "FRA",
+   "GBR",
+   "ITA",
+   "JPN",
+   "NLD",
+   "NOR",
+   "PRT",
+   "SWE",
+   "USA"
+  ]
+ },
+ "world_hour": {
+  "anchor_2014Q1": 15.264,
+  "level_1975_12": 1.892,
+  "level_2026_06": 21.593,
+  "provisional_from": "2025-07-31"
+ },
+ "us_equity": {
+  "price_log_pct": 8.61,
+  "earnings_log_pct": 7.11,
+  "dividends_log_pct": 6.15,
+  "pe_1976": 11.8,
+  "pe_2026": 25.2
+ },
+ "g_vs_hour": {
+  "world_gdp_growth_log_pct_1976_2025": 5.95,
+  "hour_growth_log_pct_1976_2025": 4.82,
+  "implied_hours_worked_growth_pct": 1.13
+ },
+ "yield_extremes": {
+  "max": [
+   "1982-06-30",
+   11.56
+  ],
+  "min": [
+   "2020-12-31",
+   1.77
+  ],
+  "first": 7.24,
+  "last": 3.14,
+  "last_above_5": "1997-05-31",
+  "last12m_mean": 3.14
+ },
+ "holding": {
+  "reinvested_x": 5.8,
+  "reinvested_min": [
+   "1980-03-31",
+   8905
+  ],
+  "spent_value_share": 0.46,
+  "dist_usd_pct": 1.55,
+  "dist_real_pct": -1.99,
+  "dist_hours_pct": -3.25
+ },
+ "rolling": {
+  "20": {
+   "windows": 367,
+   "share_cash_exceeds_pct": 91.6,
+   "median_excess": 1.47,
+   "n_short": 31,
+   "short_first": "1999-11-30",
+   "short_last": "2002-07-31",
+   "tr_hours_min": [
+    "2023-10-31",
+    1.05
+   ],
+   "tr_hours_median": 2.95
+  },
+  "10": {
+   "windows": 487,
+   "share_cash_exceeds_pct": 78.2,
+   "median_excess": 1.01,
+   "n_short": 106,
+   "short_first": "1989-07-31",
+   "short_last": "2022-03-31",
+   "tr_hours_min": [
+    "2009-02-28",
+    -0.51
+   ],
+   "tr_hours_median": 3.63
+  }
+ },
+ "rent": {
+  "countries": 16,
+  "1976": 5.52,
+  "2000": 4.28,
+  "2020": 2.73,
+  "gmp_cash_1976": 7.15,
+  "gmp_cash_2000": 4.48,
+  "gmp_cash_2020": 1.94
+ },
+ "full_sample": {
+  "tr_log_pct": 8.3,
+  "cash_pct": 5.02,
+  "val_pct": 1.12,
+  "rest_pct": 2.16,
+  "hour_pct": 4.82,
+  "cash_yield_mean": 5.03
+ }
+}
