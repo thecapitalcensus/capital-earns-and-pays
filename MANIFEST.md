@@ -1,15 +1,15 @@
 # Manifest
 
-Generated 2026-09-24T04:00:03Z by `make_manifest.py`.
+Generated 2026-09-24T11:39:20Z by `make_manifest.py`.
 
 ## Files in this repository
 
 | file | bytes | sha256 |
 |---|---|---|
 | `.gitignore` | 207 | `e3e51085ea484f3154c1bc64f35250b5a060990bb850c052277936945bfd0a72` |
-| `CITATION.cff` | 1,124 | `fc6f43ac662953716f58ec2318121cd9bd4c9079bdd919f0df2fe551c22911db` |
+| `CITATION.cff` | 1,106 | `35bb55fb61f1264d278d7202a7797431b2c63d6d9efe34990256d56c76edaa25` |
 | `LICENSE.md` | 3,972 | `e3d583a360ddec634aa2b8e62971acd2a2d37931d2e7c0444309d887bfb5a3f9` |
-| `README.md` | 6,411 | `5d9dcd230945c7431949cd9b3276b9ebd0a3359cb18880496cb63fc2954609cd` |
+| `README.md` | 6,381 | `77ce9ff9a389d1abc4c9004dbe87c1c9d708e835dad4f8e6aa60b0ccd4c5c744` |
 | `build_paper_v2.py` | 20,804 | `81998912defffe882c0f00ecf4466079516fd40124d9b6e22bc7f17df5f2b714` |
 | `build_v2.py` | 35,709 | `4b949551161946a92cf98d9ebd48398c8528ed6988d352c04d2bde81ff65693a` |
 | `data/DFII10.csv` | 98,907 | `abf0f68229ed84111abbc2ec103d48803d4977f5a59a4bbafb9b1dbb9a5c13ea` |
@@ -140,8 +140,8 @@ Generated 2026-09-24T04:00:03Z by `make_manifest.py`.
 | `output_v2/paper/img/v2_fig4.png` | 94,893 | `46a3abbaaa9f8555d025bb3350c944912af57c311cebabd08d92986479e9900f` |
 | `output_v2/paper/img/v2_fig5.png` | 86,725 | `c51f0ea2867bbfa3ba2e3a75187a29b69a54c74cae1731e97333604b5982617a` |
 | `output_v2/paper/img/v2_figA1.png` | 116,527 | `1f17386303a6fa163ea99bbb4539b28860d844d550bee6c7fcf3800f7c3dd2f3` |
-| `output_v2/paper/income.html` | 77,097 | `278357195e818aa4ea68c7d18779c6fc52e0f8d7a2343487ee1f3c05d7bd0930` |
-| `output_v2/paper/income.pdf` | 1,563,098 | `010b1ffaa3e6b1d55a00088717765edafad4c8264c94f84b9a9a8af906127f1d` |
+| `output_v2/paper/income.html` | 77,136 | `9129ef89293ef199a5f2813bf6a66fae52e1d87238656c8c07442fd619b3ddeb` |
+| `output_v2/paper/income.pdf` | 1,563,724 | `6b78ce7820b88e74709686c5d252f331580b2515ed914a02242e69399d2b35e4` |
 | `output_v2/paper/style.css` | 2,498 | `23101d46174ac28f836b91204245d2787c527f54d1b81efd21bb7850a9b1e037` |
 | `output_v2/rolling20.csv` | 8,383 | `ffca24a2eb971e9387933b05a47277e195898de207e50f4d8bf0a392033bce2d` |
 | `output_v2/sleeve_yields.csv` | 37,648 | `f02b16b8bd33d6c5bc9442e748c7188de38a822709e65cc2db6dcb0e7ef1f6b5` |
@@ -157,7 +157,7 @@ Generated 2026-09-24T04:00:03Z by `make_manifest.py`.
 | `output_v2/table8_payers.csv` | 1,569 | `15abf0d646df59d550dc42eaf82e98c78200bdf011bffefff8b6dd5fabd17a2d` |
 | `output_v2/table9_aggregate.csv` | 4,274 | `29c3cd1f6680093a48ea8186ec18e3fa79a00e292ddf7de15947db5663db4e02` |
 | `output_v2/table_crosscheck.csv` | 406 | `1453acd82fb0dc989d1f380e869ec31fb1ef78082292e120dcfa9ad6f2e5613d` |
-| `paper_v2_template.html` | 49,497 | `f95a6bdd156cc3c56b3e4f132b87053c44e36179c98555c79685ce2f5481951a` |
+| `paper_v2_template.html` | 49,536 | `c95f6a81a8a027ddd73ec117cd0d703fdd42bc123fe648d33260e8c6577edae6` |
 
 ## Inputs used by v1.4 that are not included (checksums recorded by build_v2.py)
 
