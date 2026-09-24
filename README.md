@@ -2,7 +2,7 @@
 
 Code and derived data for the third Capital Census research note:
 
-> Nakanishi, K. (2026). *What the World's Capital Earns and Pays: The Global Market Portfolio in Dollars and in Hours of the World's Work.* Research note, draft v1.4, 23 September 2026. SSRN identifier to be added on posting. Site version: https://thecapitalcensus.github.io/income.html
+> Nakanishi, K. (2026). *What the World's Capital Earns and Pays: The Global Market Portfolio in Dollars and in Hours of the World's Work.* Research note, draft v1.4, 23 September 2026. SSRN abstract 7515699, https://ssrn.com/abstract=7515699 (doi:10.2139/ssrn.7515699 on approval). Site version: https://thecapitalcensus.github.io/income.html
 
 The note follows the investable global market portfolio (GMP) month by month from January 1976 to June 2026, splits its total return into cash distributions, valuation changes and the rest, and measures each in *world hours* (nominal GDP per hour worked across 43 countries). It extends the first two notes in the series:
 
@@ -54,7 +54,7 @@ See `LICENSE.md`. In short: code MIT; the note's text (`paper_v2_template.html`,
 
 ```
 Nakanishi, K. (2026). What the World's Capital Earns and Pays: The Global Market Portfolio in Dollars
-and in Hours of the World's Work. Research note, draft v1.4. SSRN [identifier to be added].
+and in Hours of the World's Work. Research note, draft v1.4. SSRN abstract 7515699, https://ssrn.com/abstract=7515699.
 Code and data: https://github.com/thecapitalcensus/capital-earns-and-pays
 ```
 
